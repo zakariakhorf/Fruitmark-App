@@ -20,12 +20,33 @@ router.delete('/:id',  (req,res)=>{
 
 
 
+router.put('/:id', async (req,res)=>{
+ Item.findByIdAndUpdate(req.body._id,req.body,function(err, result) {
+   if (err) {
+     res.send(err);
+   } else {
+     res.send(result);
+   }
+ })
+   
+ })
+
+
 
 
 //post
 
 router.post('/',  (req,res)=>{
-  const newItem = new Item({name:req.body.name})
+  const newItem = new Item({ville:req.body.ville,stock:req.body.stock,
+   orange: req.body.orange,
+   banane:req.body.banane,
+   pomme: req.body.pomme,
+   fraise:req.body.fraise,
+   cerise:req.body.cerise
+
+
+
+})
   newItem.save().then((item)=>res.json(item))
  })
  
